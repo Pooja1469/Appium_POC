@@ -8,7 +8,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 public class Extent_report_demo {
 
 	ExtentHtmlReporter htmlReporter;
-	ExtentReports extent;
+	ExtentReports extent; 
 
 	@BeforeSuite
 	public void reportSetup() {

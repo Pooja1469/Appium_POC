@@ -12,7 +12,6 @@ public class Tests extends BaseClass {
 	@Test 
 	public void testtwo()
 	{
-		
 		// creates a toggle for the given test, adds all log events under it    
         ExtentTest test = extent.createTest("MySecondTest");
         

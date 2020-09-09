@@ -44,7 +44,7 @@ public class BaseClass extends Extent_report_demo {
 		} catch (Exception e) {
 
 			e.printStackTrace();
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage()); 
 		}
 
 	}
