@@ -4,19 +4,26 @@ import java.net.URL;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
+
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.MobileCapabilityType;
 
-public class BaseClass {
+public class BaseClass extends Extent_report_demo {
 	
-	static AppiumDriver<MobileElement> driver; // initialize driver
+	//static AppiumDriver<MobileElement> driver; // initialize driver
 	
-	@BeforeSuite
+	WebDriver driver;
+	
+	@BeforeTest
 	public void setup()  
 	{
 		try {
@@ -30,7 +37,8 @@ public class BaseClass {
 		cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT,"60");
 		cap.setCapability(MobileCapabilityType.BROWSER_NAME,"Chrome");
 		cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-		ChromeOptions chromeOptions = new ChromeOptions();
+	    
+		ChromeOptions chromeOptions = new ChromeOptions();  
 		chromeOptions.setExperimentalOption("w3c", false);
 		cap.merge(chromeOptions);
 		
@@ -39,7 +47,7 @@ public class BaseClass {
 		
 		
 			URL url = new URL("http://127.0.0.1:4723/wd/hub");
-			driver = new AppiumDriver<MobileElement>(url,cap);
+			driver = new RemoteWebDriver(url,cap);
 			
 	
 			
@@ -54,6 +62,11 @@ public class BaseClass {
 	@Test
 	public void testone()
 	{
+		 // creates a toggle for the given test, adds all log events under it    
+        ExtentTest test = extent.createTest("MyFirstTest", "Sample description");
+        
+        test.log(Status.PASS, "test one started");
+        
 		System.out.println("APP STARTED");
 				
 	}
@@ -61,8 +74,8 @@ public class BaseClass {
 		
 	@AfterSuite	
 	public void teardown() {
-		driver.close();
-		driver.close();
+		//driver.close();
+		//driver.close();
 	}
 
 }
